@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Botón de Metamask</title>
+  </head>
+  <body>
+    <button onclick="abrirMetamask()">Abrir Metamask</button>
+
+    <script>
+      async function abrirMetamask() {
+        // Comprobar si la extensión de Metamask está instalada y conectada
+        if (typeof window.ethereum !== 'undefined') {
+          console.log('Metamask está instalado!');
+          try {
+            // Solicitar al usuario que se conecte a su cuenta de Metamask
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+          } catch (error) {
+            console.error('El usuario rechazó la conexión', error);
+          }
+        } else {
+          console.error('Metamask no está instalado!');
+        }
+      }
+    </script>
+  </body>
+</html>
